@@ -2,6 +2,7 @@
 
 [![License: CC BY-NC 4.0](https://img.shields.io/badge/License-CC%20BY--NC%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc/4.0/)
 [![API](https://img.shields.io/badge/PocketMine--MP-5.41.0-blue.svg)](https://github.com/pmmp/PocketMine-MP)
+[![Poggit](https://img.shields.io/badge/Poggit-Download-green.svg)](https://poggit.pmmp.io/ci/AID-LEARNING/PacketChecker/~)
 
 A plugin to check packets for PocketMine-MP servers.
 
@@ -25,7 +26,7 @@ PacketChecker is a plugin designed to monitor and analyze network packets in Poc
 
 1. Clone this repository:
 ```bash
-git clone https://github.com/winheberg/packet-checker-pmmp.git
+git clone https://github.com/AID-LEARNING/PacketChecker.git
 ```
 
 2. Install dependencies:
