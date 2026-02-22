@@ -8,7 +8,7 @@ A plugin to check packets for PocketMine-MP servers.
 
 ## 📋 Description
 
-PacketCheckerPMMP is a plugin designed to monitor and analyze network packets in PocketMine-MP servers. It provides tools for developers and server administrators to inspect packet traffic and ensure network integrity.
+PacketChecker is a plugin designed to monitor and validate network packets in PocketMine-MP servers. It automatically **ignores and rejects malformed packets** that are not correctly formatted, helping to protect your server from invalid or potentially malicious packet data.
 
 ## 📥 Download
 
@@ -42,11 +42,11 @@ composer install
 
 ## 🚀 Usage
 
-The plugin will automatically start monitoring packets when the server starts. Check your console for packet information.
+The plugin will automatically start monitoring packets when the server starts. It validates incoming packets and **ignores any malformed or incorrectly formatted packets** to protect your server.
 
 ## ⚠️ Disclaimer
 
-**This system does not protect against all threats.** PacketChecker provides basic packet monitoring and filtering, but it is not a complete security solution.
+**This system does not protect against all threats.** PacketChecker validates packet format and ignores malformed packets, but it is not a complete security solution.
 
 For enhanced protection, [Winheberg](https://winheberg.fr) offers an **additional filter** with more advanced security features and comprehensive packet analysis.
 
