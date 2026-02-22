@@ -1,0 +1,8 @@
+name: PacketCheckerPMMP
+api: 5.41.0
+version: 0.0.4
+main: SenseiTarzan\PacketCheckerPMMP\Main
+description: "A plugin to check packets for PMMP."
+load: STARTUP
+softdepend:
+  - "DEVirion"

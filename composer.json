@@ -1,0 +1,17 @@
+{
+    "name": "winheberg/packet-checker-pmmp",
+    "autoload": {
+        "psr-4": {
+            "SenseiTarzan\\PacketCheckerPMMP\\": "src/SenseiTarzan/PacketCheckerPMMP"
+        }
+    },
+    "authors": [
+        {
+            "name": "Sensei Tarzan",
+            "email": "gabrielcaptari0@gmail.com"
+        }
+    ],
+    "require": {
+        "pocketmine/pocketmine-mp": "^5.41"
+    }
+}
