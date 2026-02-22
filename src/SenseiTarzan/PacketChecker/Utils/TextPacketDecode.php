@@ -1,6 +1,6 @@
 <?php
 
-namespace SenseiTarzan\PacketCheckerPMMP\Utils;
+namespace SenseiTarzan\PacketChecker\Utils;
 
 final class TextPacketDecode
 {

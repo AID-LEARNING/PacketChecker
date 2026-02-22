@@ -1,6 +1,6 @@
 <?php
 
-namespace SenseiTarzan\PacketCheckerPMMP\Listener;
+namespace SenseiTarzan\PacketChecker\Listener;
 
 use pmmp\encoding\BE;
 use pmmp\encoding\Byte;
@@ -8,30 +8,27 @@ use pmmp\encoding\ByteBufferReader;
 use pmmp\encoding\DataDecodeException;
 use pmmp\encoding\LE;
 use pmmp\encoding\VarInt;
-use pocketmine\entity\InvalidSkinException;
 use pocketmine\event\EventPriority;
 use pocketmine\event\server\DataPacketDecodeEvent;
 use pocketmine\lang\KnownTranslationFactory;
 use pocketmine\network\mcpe\protocol\LoginPacket;
-use pocketmine\network\mcpe\protocol\NetworkSettingsPacket;
 use pocketmine\network\mcpe\protocol\PacketDecodeException;
 use pocketmine\network\mcpe\protocol\PlayerSkinPacket;
 use pocketmine\network\mcpe\protocol\ProtocolInfo;
 use pocketmine\network\mcpe\protocol\RequestNetworkSettingsPacket;
-use pocketmine\network\mcpe\protocol\serializer\CommonTypes;
 use pocketmine\network\mcpe\protocol\TextPacket;
 use pocketmine\network\PacketHandlingException;
 use pocketmine\Server;
 use pocketmine\utils\Limits;
 use SenseiTarzan\ExtraEvent\Class\EventAttribute;
-use SenseiTarzan\PacketCheckerPMMP\Utils\ClientDataToSkinDataHelper;
-use SenseiTarzan\PacketCheckerPMMP\Utils\CommonTypesExtend;
-use SenseiTarzan\PacketCheckerPMMP\Utils\HeaderPacketDecode;
-use SenseiTarzan\PacketCheckerPMMP\Utils\LoginPacketDecode;
-use SenseiTarzan\PacketCheckerPMMP\Utils\TextPacketDecode;
+use SenseiTarzan\PacketChecker\Utils\ClientDataToSkinDataHelper;
+use SenseiTarzan\PacketChecker\Utils\CommonTypesExtend;
+use SenseiTarzan\PacketChecker\Utils\HeaderPacketDecode;
+use SenseiTarzan\PacketChecker\Utils\LoginPacketDecode;
+use SenseiTarzan\PacketChecker\Utils\TextPacketDecode;
 use Throwable;
 
-class NetworkListener
+final class NetworkListener
 {
 
     #[EventAttribute(EventPriority::LOWEST)]

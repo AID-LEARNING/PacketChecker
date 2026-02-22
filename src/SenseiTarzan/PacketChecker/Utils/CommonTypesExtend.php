@@ -1,6 +1,6 @@
 <?php
 
-namespace SenseiTarzan\PacketCheckerPMMP\Utils;
+namespace SenseiTarzan\PacketChecker\Utils;
 
 use pmmp\encoding\ByteBufferReader;
 use pmmp\encoding\DataDecodeException;
@@ -8,10 +8,6 @@ use pmmp\encoding\LE;
 use pmmp\encoding\VarInt;
 use pocketmine\network\mcpe\protocol\PacketDecodeException;
 use pocketmine\network\mcpe\protocol\serializer\CommonTypes;
-use pocketmine\network\mcpe\protocol\types\skin\PersonaPieceTintColor;
-use pocketmine\network\mcpe\protocol\types\skin\PersonaSkinPiece;
-use pocketmine\network\mcpe\protocol\types\skin\SkinAnimation;
-use pocketmine\network\mcpe\protocol\types\skin\SkinData;
 use pocketmine\network\mcpe\protocol\types\skin\SkinImage;
 
 final class CommonTypesExtend{

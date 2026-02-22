@@ -1,19 +1,10 @@
 <?php
 
-namespace SenseiTarzan\PacketCheckerPMMP\Utils;
+namespace SenseiTarzan\PacketChecker\Utils;
 
-use pocketmine\network\mcpe\JwtException;
-use pocketmine\network\mcpe\JwtUtils;
 use pocketmine\network\mcpe\NetworkSession;
-use pocketmine\network\mcpe\protocol\LoginPacket;
-use pocketmine\network\mcpe\protocol\types\login\AuthenticationInfo;
-use pocketmine\network\mcpe\protocol\types\login\AuthenticationType;
-use pocketmine\network\mcpe\protocol\types\login\legacy\LegacyAuthChain;
-use pocketmine\network\mcpe\protocol\types\login\legacy\LegacyAuthIdentityData;
-use pocketmine\network\PacketHandlingException;
-use Ramsey\Uuid\Uuid;
 
-class ParseJsonMapper
+final class ParseJsonMapper
 {
 
     public static function defaultJsonMapper(
