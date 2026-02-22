@@ -2,16 +2,23 @@
     "name": "winheberg/packet-checker-pmmp",
     "autoload": {
         "psr-4": {
-            "SenseiTarzan\\PacketCheckerPMMP\\": "src/SenseiTarzan/PacketCheckerPMMP"
+            "SenseiTarzan\\PacketChecker\\": "src/SenseiTarzan/PacketChecker"
         }
     },
     "authors": [
         {
             "name": "Sensei Tarzan",
             "email": "gabrielcaptari0@gmail.com"
+        },
+        {
+            "name": "Winheberg",
+            "email": "contact@winheberg.fr"
         }
     ],
     "require": {
         "pocketmine/pocketmine-mp": "^5.41"
+    },
+    "require-dev": {
+        "friendsofphp/php-cs-fixer": "^v3.59.3"
     }
 }

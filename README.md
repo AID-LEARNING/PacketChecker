@@ -53,6 +53,8 @@ No configuration required. The plugin works out of the box.
 - Email: gabrielcaptari0@gmail.com
 
 **Winheberg**
+- Email: contact@winheberg.fr
+- GitHub: [Winheberg](https://github.com/Winheberg)
 
 ## 📄 License
 
