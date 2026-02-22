@@ -8,7 +8,11 @@ A plugin to check packets for PocketMine-MP servers.
 
 ## 📋 Description
 
-PacketChecker is a plugin designed to monitor and analyze network packets in PocketMine-MP servers. It provides tools for developers and server administrators to inspect packet traffic and ensure network integrity.
+PacketCheckerPMMP is a plugin designed to monitor and analyze network packets in PocketMine-MP servers. It provides tools for developers and server administrators to inspect packet traffic and ensure network integrity.
+
+## 📥 Download
+
+**[⬇️ Download latest version on Poggit](https://poggit.pmmp.io/ci/AID-LEARNING/PacketChecker/~)**
 
 ## ⚙️ Requirements
 
