@@ -49,10 +49,11 @@ return (new PhpCsFixer\Config)
   / ____ \ _| |_| |__| |      | |____| |____ / ____ \| | \ \| |\  |_| |_| |\  | |__| |
  /_/    \_\_____|_____/       |______|______/_/    \_\_|  \_\_| \_|_____|_| \_|\_____|
 
-This program is free software: you can redistribute it and/or modify
-it under the terms of the GNU Lesser General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
+Copyright (c) 2026 Sensei Tarzan, Winheberg
+
+This work is licensed under the Creative Commons Attribution-NonCommercial 4.0
+International License (CC BY-NC 4.0).
+https://creativecommons.org/licenses/by-nc/4.0/
 
 @authors AID-LEARNING x Winheberg
 @link https://github.com/AID-LEARNING

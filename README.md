@@ -1,4 +1,4 @@
-# PacketCheckerPMMP
+# PacketChecker
 
 [![License: CC BY-NC 4.0](https://img.shields.io/badge/License-CC%20BY--NC%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc/4.0/)
 [![API](https://img.shields.io/badge/PocketMine--MP-5.41.0-blue.svg)](https://github.com/pmmp/PocketMine-MP)
@@ -7,7 +7,7 @@ A plugin to check packets for PocketMine-MP servers.
 
 ## 📋 Description
 
-PacketCheckerPMMP is a plugin designed to monitor and analyze network packets in PocketMine-MP servers. It provides tools for developers and server administrators to inspect packet traffic and ensure network integrity.
+PacketChecker is a plugin designed to monitor and analyze network packets in PocketMine-MP servers. It provides tools for developers and server administrators to inspect packet traffic and ensure network integrity.
 
 ## ⚙️ Requirements
 
@@ -38,6 +38,12 @@ composer install
 ## 🚀 Usage
 
 The plugin will automatically start monitoring packets when the server starts. Check your console for packet information.
+
+## ⚠️ Disclaimer
+
+**This system does not protect against all threats.** PacketChecker provides basic packet monitoring and filtering, but it is not a complete security solution.
+
+For enhanced protection, [Winheberg](https://winheberg.fr) offers an **additional filter** with more advanced security features and comprehensive packet analysis.
 
 ## 🔧 Configuration
 
