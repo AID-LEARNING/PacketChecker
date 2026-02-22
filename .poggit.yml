@@ -3,7 +3,7 @@ branches:
   - master
   - develop
 projects:
-  PacketCheckerPMMP:
+  PacketChecker:
     path: ""
     icon: "icon.png"
     lint:
