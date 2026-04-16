@@ -25,6 +25,7 @@ declare(strict_types=1);
 
 namespace SenseiTarzan\PacketChecker\Listener;
 
+use Closure;
 use pmmp\encoding\BE;
 use pmmp\encoding\Byte;
 use pmmp\encoding\ByteBufferReader;
@@ -33,14 +34,18 @@ use pmmp\encoding\LE;
 use pmmp\encoding\VarInt;
 use pocketmine\event\EventPriority;
 use pocketmine\event\server\DataPacketDecodeEvent;
+use pocketmine\form\Form;
 use pocketmine\lang\KnownTranslationFactory;
 use pocketmine\network\mcpe\protocol\LoginPacket;
+use pocketmine\network\mcpe\protocol\ModalFormResponsePacket;
 use pocketmine\network\mcpe\protocol\PacketDecodeException;
 use pocketmine\network\mcpe\protocol\PlayerSkinPacket;
 use pocketmine\network\mcpe\protocol\ProtocolInfo;
 use pocketmine\network\mcpe\protocol\RequestNetworkSettingsPacket;
+use pocketmine\network\mcpe\protocol\serializer\CommonTypes;
 use pocketmine\network\mcpe\protocol\TextPacket;
 use pocketmine\network\PacketHandlingException;
+use pocketmine\player\Player;
 use pocketmine\Server;
 use pocketmine\utils\Limits;
 use SenseiTarzan\ExtraEvent\Class\EventAttribute;
@@ -48,6 +53,7 @@ use SenseiTarzan\PacketChecker\Utils\ClientDataToSkinDataHelper;
 use SenseiTarzan\PacketChecker\Utils\CommonTypesExtend;
 use SenseiTarzan\PacketChecker\Utils\HeaderPacketDecode;
 use SenseiTarzan\PacketChecker\Utils\LoginPacketDecode;
+use SenseiTarzan\PacketChecker\Utils\ModelFormResponseHelper;
 use SenseiTarzan\PacketChecker\Utils\TextPacketDecode;
 use Throwable;
 use function count;
@@ -55,6 +61,20 @@ use function strlen;
 
 final class NetworkListener
 {
+	/** @var Closure<Player, int, ?Form> $getFormClosure */
+	private readonly Closure $getFormClosure;
+	private \ReflectionProperty $formsProperty;
+	public function __construct()
+	{
+		$this->formsProperty = new \ReflectionProperty(Player::class, "forms");
+		$this->getFormClosure = function (Player $player, int $formId) : ?Form {
+			$forms = $this->formsProperty->getValue($player);
+			if(isset($forms[$formId])){
+				return $forms[$formId];
+			}
+			return null;
+		};
+	}
 
 	#[EventAttribute(EventPriority::LOWEST)]
 	public function onDataPacketDecode(DataPacketDecodeEvent $event) : void {
@@ -130,6 +150,37 @@ final class NetworkListener
 					}
 					break;
 				}
+
+				case ModalFormResponsePacket::NETWORK_ID: {
+					$player = $session->getPlayer();
+					if($player === null) {
+						throw new PacketHandlingException("Received ModalFormResponsePacket from a session with no associated player");
+					}
+
+					$buffer = new ByteBufferReader($event->getPacketBuffer());
+					HeaderPacketDecode::SkipHeader($buffer, ModalFormResponsePacket::NETWORK_ID);
+					$formId = VarInt::readUnsignedInt($buffer);
+
+					if($formId < 0) {
+						throw new PacketHandlingException("Invalid form ID: expected a non-negative integer but got $formId");
+					}
+
+					if(!$player->hasPendingForm($formId)) {
+						echo "No pending form with ID $formId found for player " . $player->getName() . "\n";
+						throw new PacketHandlingException("Received ModalFormResponsePacket with form ID $formId, but no pending form with that ID was found for player " . $player->getName());
+					}
+					$form = ($this->getFormClosure)($player, $formId);
+
+					$predictedLarge = ModelFormResponseHelper::predictLargeSizeInOctetResponse($form);
+
+					CommonTypes::readOptional($buffer, fn ($buffer) => CommonTypesExtend::getString($buffer, $predictedLarge)); // check response length
+					CommonTypes::readOptional($buffer, Byte::readUnsigned(...)); // check cancel reason, if present
+					if($buffer->getUnreadLength() > 0) {
+						throw new PacketHandlingException("Extra data found after reading ModalFormResponsePacket payload: " . $buffer->getUnreadLength() . " bytes remain");
+					}
+					break;
+				}
+
 				case TextPacket::NETWORK_ID: {
 					$buffer = new ByteBufferReader($event->getPacketBuffer());
 					HeaderPacketDecode::SkipHeader($buffer, TextPacket::NETWORK_ID);
@@ -212,7 +263,8 @@ final class NetworkListener
 		}catch (DataDecodeException $e) {
 			Server::getInstance()->getLogger()->debug("DataDecodeException while decoding packet " . $event->getPacketId() . ": " . $e->getMessage());
 			$event->cancel();
-		}catch (Throwable){
+		}catch (Throwable $e) {
+			Server::getInstance()->getLogger()->debug("Unexpected exception while handling packet " . $event->getPacketId() . ": " . $e->getMessage());
 			return; // catch any other unexpected exceptions to avoid crashing the server, but don't cancel the event since we don't know if the packet is actually malformed or if there was just an error in our code
 		}
 	}

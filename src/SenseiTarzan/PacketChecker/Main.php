@@ -39,7 +39,7 @@ final class Main extends PluginBase
 
 	protected function onEnable() : void{
 		$this->getLogger()->info("PacketChecker powered by SenseiTarzan x Winheberg is enabled");
-		EventLoader::loadEventWithClass($this, NetworkListener::class);
+		EventLoader::loadEventWithClass($this, new NetworkListener());
 	}
 
 	protected function onDisable() : void{
