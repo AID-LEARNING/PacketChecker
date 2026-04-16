@@ -166,7 +166,6 @@ final class NetworkListener
 					}
 
 					if(!$player->hasPendingForm($formId)) {
-						echo "No pending form with ID $formId found for player " . $player->getName() . "\n";
 						throw new PacketHandlingException("Received ModalFormResponsePacket with form ID $formId, but no pending form with that ID was found for player " . $player->getName());
 					}
 					$form = ($this->getFormClosure)($player, $formId);

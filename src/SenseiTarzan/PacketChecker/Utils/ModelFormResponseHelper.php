@@ -49,33 +49,29 @@ final class ModelFormResponseHelper
 		foreach ($content as $element) {
 			$type = $element["type"] ?? null;
 			switch ($type) {
-				case "input":
+				case "input": {
 					$result += 512; //512 for input text
 					break;
-				case "step_slider":
-				{
+				}
+				case "step_slider": {
 					$result += 12; // size of int
 					break;
 				}
-				case "slider":
-				{
+				case "slider": {
 					$result += 24; // size of long
 					break;
 				}
 				case "label":
 				case "divider":
-				case "header":
-				{
-					$result += 4;
+				case "header": {
+					$result += 4; // size of null
 					break;
 				}
-				case "toggle":
-				{
+				case "toggle": {
 					$result += 1; // size of char, as they don't have a response content, just a boolean or no content at all
 					break;
 				}
-				case "dropdown":
-				{
+				case "dropdown": {
 					$result += 20; // size of long, as the response is the index of the selected option
 					break;
 				}
